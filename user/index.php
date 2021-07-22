@@ -461,9 +461,9 @@
       {
 
         let price = document.getElementById(`unit_price_${numItem}`).value;
-        let change = document.getElementById(`t_quantity_${numItem}`).value;
-
-        document.getElementById(`t_price_${numItem}`).value = parseFloat(price) * parseFloat(change);
+        let change = document.getElementById(`t_quantity_${numItem}`);
+        if(change.value == "") change.value = 0;
+        document.getElementById(`t_price_${numItem}`).value = parseFloat(price) * parseFloat(change.value);
         calculateTotalPrice(numItem);
       }
 
