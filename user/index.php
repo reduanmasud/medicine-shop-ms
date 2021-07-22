@@ -65,16 +65,17 @@
   <header class="w3-container" style="padding-top:22px">
     <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
   </header>
+
+  <input type="text" name="" id="" value="<?php echo $_SESSION['hash'];?>">
   <pre>
   <?php
 
     //var_dump($shop->getId());
     //var_dump($med->medicineCount());
-    var_dump($_SESSION);
+    //var_dump($_SESSION["hash"]);
 
     if (isset($_POST['sell'])) {
-
-      var_dump($shop->sell($_POST));
+        var_dump($shop->sell($_POST));
     }
   ?>
   </pre>
@@ -508,7 +509,7 @@
           html += `<td> ${numItem} </td>
                   <td> <input typt="text"disabled name="brand_name[]" value="${medicineName.value}" > </td>
                   <td> <input type="hidden" name="med_id[]" value ="${medicineID.value}"/><input typt="number" onKeyUp="changePrice(${numItem})" onChange="changePrice(${numItem})" name="quantity[]" id="t_quantity_${numItem}" value="${medicineQuantity.value}" > </td>
-                  <td> <input typt="text" disabled id="t_price" name="tprice[]" value="${price}" style="width:70%"> <input type="hidden" id="unit_price_${numItem}" value="${medicinePrice.value}"></td>     
+                  <td> <input typt="text" disabled id="t_price_${numItem}" name="tprice[]" value="${price}" style="width:70%"> <input type="hidden" id="unit_price_${numItem}" value="${medicinePrice.value}"></td>     
           `;
           html += `</tr>`;
           let row  = document.getElementById("tBodyList").insertRow();
