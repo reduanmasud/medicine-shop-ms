@@ -22,20 +22,20 @@ class Shop
 
         //return gettype($data);
 
-        return $this->getId();
+        // return $this->getId();
 
-        $arrSize = count($data['med_id']);
-        $valuesMed = '';
-        for ($i = 0; $i < $arrSize; $i++) {
-            $valuesMed .= '( ';
-            $valuesMed .= '`' . $data['med_id'][$i] . '`';
-            $valuesMed .= ', `' . $data['quantity'][$i]."`";
-            $valuesMed .= ' )';
-        }
+        // $arrSize = count($data['med_id']);
+        // $valuesMed = '';
+        // for ($i = 0; $i < $arrSize; $i++) {
+        //     $valuesMed .= '( ';
+        //     $valuesMed .= '`' . $data['med_id'][$i] . '`';
+        //     $valuesMed .= ', `' . $data['quantity'][$i]."`";
+        //     $valuesMed .= ' )';
+        // }
 
         //return $valuesMed;
 
-        return $this->getMedCost(3, 3);
+        return $this->getMedCost(1, 3);
 
         
     }
@@ -109,15 +109,7 @@ class Shop
             return '';
         }
     }
-    private function getMedCost($medId, $Quantity)
-    {
-        $sql = 'SELECT * FROM shop_medicine WHERE shop_id = ? AND med_id = ?';
-        $res = $this->db->prepare($sql);
-        $res->execute([ $this->getId(), $medId]);
-
-        return $res->fetch(PDO::FETCH_ASSOC);
-        
-    }
+    
 
     public function getId()
     {
