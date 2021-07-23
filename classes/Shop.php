@@ -109,7 +109,27 @@ class Shop
             return '';
         }
     }
-    
+
+    private function getMedCost($medId, $Quantity)
+    {
+        //should have add a security features that checks if the medicine is owned by the shop.
+        $sql = 'SELECT * FROM shop_medicine WHERE shop_id = ? AND med_id = ?';
+        $res = $this->db->prepare($sql);
+        $res->execute([ $this->getId(), $medId]);
+        
+        $result = $res->fetch(PDO::FETCH_ASSOC);
+        $price = $result['price'];
+        if($result['price'] == 0)
+        {
+            $sql2 = 'SELECT * FROM medicine WHERE id = ?';
+            $res2 = $this->db->prepare($sql2);
+            $res2 -> execute([$medId]);
+            $dta = $res2->fetch(PDO::FETCH_ASSOC);
+            $price = $dta['unit_price'];
+        }
+        return $price * $Quantity;
+        
+    }
 
     public function getId()
     {
