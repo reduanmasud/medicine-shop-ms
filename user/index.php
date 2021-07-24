@@ -498,7 +498,7 @@
       }
 
       document.getElementById("paidInp").addEventListener("change",(inp)=>{
-        console.log(inp)
+     
 
         if(inp.target.value == "") inp.target.value = 0;
       });
@@ -535,7 +535,7 @@
         else
         {
           let a = parseFloat((subTotalPrice * discountElm.value) / 100);
-          console . log(`Sub total price: ${a}`);
+          
           setTotalPrice(subTotalPrice - a);
         }
         
@@ -545,7 +545,7 @@
       function setTotalPrice(price)
       {
         const item = document . getElementById('total_after_discount');
-        console . log('setTotalFunction accessed...');
+        
           item.innerHTML = price;
         
       }
@@ -569,7 +569,7 @@
 
         document.getElementById("total_price").innerHTML = sum;
         const elm = document . getElementById('discountInp') . value;
-        console.log(`Sum = ${elm}`)
+        
         if(elm == 0 || elm == "")
             setTotalPrice(sum);
         else
