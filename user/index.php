@@ -192,6 +192,21 @@
             <div class="customar_wraper" id="customer_section">
 
             </div>
+
+            <div class=""  id="discount" >
+              <label class="w3-text-teal" for="discount">Discount</label>
+              <input type="text" name="discount" id="discountInp" onClick="this.select();" onkeyup="changeTotalPriceAfterDiscount()" class="w3-input w3-border" value="00">
+            </div>
+            <div>
+              Total : <span id="total_after_discount"></span>
+            </div>
+            <div class="" id="paid">
+              <label class="w3-text-teal" for="paid">Paid</label>
+              <input type="text" name="paid" id="paidInp" onClick="this.select();" onkeyup="changeDueAfterPaid()" class="w3-input w3-border" value="00">
+            </div>
+            <div>
+              Due : <span id="due_after_paid"></span>
+            </div>
             <input type="submit" value="Submit" name="sell"/>
           </form>
         </div>
@@ -455,7 +470,85 @@
       });
       
 
+      function changeDueAfterPaid()
+      {
+        let paidValue = document . getElementById('paidInp');
+        let dueElement = document.getElementById("due_after_paid");
+
+        if(paidValue.value < 0 || isNaN(paidValue.value))
+        {
+          paidValue .style.backgroundColor = "red";
+          let btn = document.querySelector("#sellMedForm > input[type=submit]");
+          btn.disabled = true;
+          btn . classList . add("w3-btn");
+          btn . classList . add('w3-disabled');
+          
+        }
+        else
+        {
+          paidValue.style.backgroundColor ="transparent";
+          let btn = document.querySelector("#sellMedForm > input[type=submit]");
+          btn.disabled = false;
+          btn . classList . remove("w3-btn");
+          btn . classList . remove('w3-disabled')
+          setDueAfterPaid();
+          
+        }
+        
+      }
+
+      document.getElementById("paidInp").addEventListener("change",(inp)=>{
+        console.log(inp)
+
+        if(inp.target.value == "") inp.target.value = 0;
+      });
+
+      function setDueAfterPaid()
+      {
+        let paid = document . getElementById('paidInp');
+        let totalPrice = document.getElementById("total_after_discount");
+        let due = document.getElementById("due_after_paid");
+        if(paid.value > 0)
+        {
+          due.innerHTML = Number.parseFloat(totalPrice.innerHTML) - paid.value;
+        }
+        else
+        {
+          due.innerHTML = Number.parseFloat(totalPrice.innerHTML)
+        }
+      }
+
+
+      function changeTotalPriceAfterDiscount(){
+        const discountElm = document . getElementById('discountInp');
+        if(discountElm.value == "")
+          discountElm.value = 0;
+        
+        let subTotalPrice = document . getElementById('total_price').innerHTML;
+        
+        subTotalPrice = Number.parseFloat(subTotalPrice);
+        
+        if(discountElm.value == 0)
+        {
+          setTotalPrice(subTotalPrice);
+        }
+        else
+        {
+          let a = parseFloat((subTotalPrice * discountElm.value) / 100);
+          console . log(`Sub total price: ${a}`);
+          setTotalPrice(subTotalPrice - a);
+        }
+        
+        setDueAfterPaid();
+      }
      
+      function setTotalPrice(price)
+      {
+        const item = document . getElementById('total_after_discount');
+        console . log('setTotalFunction accessed...');
+          item.innerHTML = price;
+        
+      }
 
       function changePrice(numItem)
       {
@@ -475,6 +568,14 @@
         }
 
         document.getElementById("total_price").innerHTML = sum;
+        const elm = document . getElementById('discountInp') . value;
+        console.log(`Sum = ${elm}`)
+        if(elm == 0 || elm == "")
+            setTotalPrice(sum);
+        else
+            setTotalPrice(sum - (sum * elm / 100));
+
+            setDueAfterPaid();
       }
 
     function addMedicineToList(inp){
