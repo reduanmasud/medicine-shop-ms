@@ -281,7 +281,7 @@
     }
 
     var medicines;
-    fetch("http://localhost/projects/realProjects/API/Medicine.php?AddMedInfo=1&shopID=<?=$shop->getId()?>", {
+    fetch("http://<?=URL?>/API/Medicine.php?AddMedInfo=1&shopID=<?=$shop->getId()?>", {
                       method: "GET",
                       headers : [
                         ["Authorization", "<?php echo 'Bearer ' . $_SESSION['hash']; ?>"]
