@@ -383,7 +383,7 @@
             data: {
                 src: async (query) => {
                   try {
-                    const source = await fetch("http://localhost/projects/realProjects/API/Customer.php?shopID=<?=$_SESSION['id']?>", {
+                    const source = await fetch("http://<?=URL?>/API/Customer.php?shopID=<?=$_SESSION['id']?>", {
                       method: "GET",
                       headers : [
                         ["Authorization", "<?php echo 'Bearer ' . $_SESSION['hash']; ?>"]
@@ -726,7 +726,7 @@
     }
 
     var medicines;
-    fetch("http://localhost/projects/realProjects/API/Medicine.php?shopID=<?=$_SESSION['id']?>", {
+    fetch("http://<?=URL?>/API/Medicine.php?shopID=<?=$_SESSION['id']?>", {
                       method: "GET",
                       headers : [
                         ["Authorization", "<?php echo 'Bearer ' . $_SESSION['hash']; ?>"]
@@ -750,7 +750,7 @@
           customer_id_field . addEventListener('keyup', e => {
           console . log(e.srcElement.value);
             try {
-                    fetch(`http://localhost/projects/realProjects/API/Customer.php?shopID=<?=$_SESSION['id']?>&csID=${e.srcElement.value}`, {
+                    fetch(`http://<?=URL?>/API/Customer.php?shopID=<?=$_SESSION['id']?>&csID=${e.srcElement.value}`, {
                       method: "GET",
                       headers : [
                         ["Authorization", "<?php echo 'Bearer ' . $_SESSION['hash']; ?>"]
