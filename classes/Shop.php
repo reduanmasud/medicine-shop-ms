@@ -18,26 +18,61 @@ class Shop
 
     public function sell($data)
     {
-        //return $data;
+        $keys = ['med_id', 'quantity', 'discount', 'paid'];
 
-        //return gettype($data);
+        foreach ($keys as $value) {
+            if (!array_key_exists($value, $data)) {
+                return "Warrning:Don't try to manipulate data!!!";
+            }
+        }
 
-        // return $this->getId();
+        $num_of_med = count($data['med_id']);
+        $sold_item = [];
+        $total_price = 0;
+        $discount = $data['discount'];
+        $paid = $data['paid'];
 
-        // $arrSize = count($data['med_id']);
-        // $valuesMed = '';
-        // for ($i = 0; $i < $arrSize; $i++) {
-        //     $valuesMed .= '( ';
-        //     $valuesMed .= '`' . $data['med_id'][$i] . '`';
-        //     $valuesMed .= ', `' . $data['quantity'][$i]."`";
-        //     $valuesMed .= ' )';
-        // }
+        $customer_id = null;
+        if (array_key_exists('customer_id', $data)) {
+            $customer_id = $data['customer_id'];
+        }
 
-        //return $valuesMed;
+        for ($i = 0; $i < $num_of_med; $i++) {
+            array_push($sold_item, new SoldMedicine($data['med_id'][$i], $data['quantity'][$i], $this->getId()));
+            $total_price += $sold_item[$i]->getTotalPrice();
+        }
 
-        return $this->getMedCost(1, 3);
+        $temp = [];
+        $temp['sold_item'] = $sold_item;
+        $temp['discount'] = $discount;
+        $temp['paid'] = $paid;
+        $temp['customer_id'] = $customer_id;
 
-        
+        $init_invoice_data = [
+            'shop_id' => $this->getId(),
+            'customer_id' => $customer_id,
+            'total' => $total_price,
+            'discount' => $discount,
+            'paid' => $paid,
+            'due' => ($total_price - $paid)
+        ];
+        $invoice_id = $this->createInvoice($init_invoice_data);
+
+        for ($i = 0; $i < $num_of_med; $i++) {
+            $sql = 'INSERT INTO `invoice_med` (`invoice_id`, `medicine_id`, `quantity`, `cost`) VALUES (?, ?, ?, ?)';
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute([$invoice_id, $sold_item[$i]->getMedId(), $sold_item[$i]->getQuantity(), $sold_item[$i]->getTotalPrice()]);
+            $sold_item[$i]->updateStoredQuantity();
+        }
+    }
+
+    private function createInvoice($data)
+    {
+        $sql = 'INSERT INTO `invoice` (`shop_id`, `customer_id`, `total`, `discount`, `paid`, `due`) VALUES (?,?,?,?,?,?)';
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$data['shop_id'], $data['customer_id'], $data['total'], $data['discount'], $data['paid'], $data['due']]);
+
+        return $this->db->lastInsertId();
     }
 
     /**
@@ -115,20 +150,19 @@ class Shop
         //should have add a security features that checks if the medicine is owned by the shop.
         $sql = 'SELECT * FROM shop_medicine WHERE shop_id = ? AND med_id = ?';
         $res = $this->db->prepare($sql);
-        $res->execute([ $this->getId(), $medId]);
-        
+        $res->execute([$this->getId(), $medId]);
+
         $result = $res->fetch(PDO::FETCH_ASSOC);
         $price = $result['price'];
-        if($result['price'] == 0)
-        {
+        if ($result['price'] == 0) {
             $sql2 = 'SELECT * FROM medicine WHERE id = ?';
             $res2 = $this->db->prepare($sql2);
-            $res2 -> execute([$medId]);
+            $res2->execute([$medId]);
             $dta = $res2->fetch(PDO::FETCH_ASSOC);
             $price = $dta['unit_price'];
         }
+
         return $price * $Quantity;
-        
     }
 
     public function getId()

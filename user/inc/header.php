@@ -5,6 +5,7 @@
     include_once '../classes/DBConnect.php';
     require_once '../classes/Shop.php';
     require_once '../classes/Medicine.php';
+    require_once '../classes/SoldMedicine.php';
     require_once '../classes/Shopmed.php';
     require_once '../classes/Customer.php';
     include_once 'functions.php';
