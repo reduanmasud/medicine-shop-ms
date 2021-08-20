@@ -12,7 +12,7 @@
   <?php
     $customer = new Customer($shop);
     if (isset($_POST['add_new_customer'])) {
-         $customer->addCustomer($_POST);
+        $customer->addCustomer($_POST);
     }
 
   ?>
@@ -127,9 +127,9 @@
               <tbody>
                 <?php foreach ($all_customer as $row) { ?>
                     <tr>
-                    <td><?=$row["id"]?></td>
-                    <td><?=$row["first_name"]?> <?=$row["last_name"]?></td>
-                    <td><?=$row["mobile"]?></td>
+                    <td><?=$row['id']?></td>
+                    <td><?=$row['first_name']?> <?=$row['last_name']?></td>
+                    <td><?=$row['mobile']?></td>
                     <td>EDIT|DELETE</td>
                     </tr>
                 <?php } ?>
@@ -175,10 +175,5 @@
   <!-- End page content -->
 </div>
 
-<script>
-if ( window.history.replaceState ) {
-  window.history.replaceState( null, null, window.location.href );
-}
 
-</script>
 <?php include 'inc/footer.php'; ?>
