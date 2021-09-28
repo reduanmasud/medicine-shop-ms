@@ -75,8 +75,25 @@
     //var_dump($_SESSION["hash"]);
 
     if (isset($_POST['sell'])) {
-        var_dump($shop->sell($_POST));
-    }
+        // echo '<script>';
+        // echo "reportPrintWindow(".$shop->sell($_POST).",".$_SESSION['id'].")";
+        // echo '</script>';
+    
+    
+      ?>
+      
+      <script>
+        function reportPrintWindow(invoiceID, shopID)
+        {
+          let url = `http://<?=URL?>/user/report/invoice_single_report.php?invoiceID=${invoiceID}&shopID=${shopID}`;
+          let windowSize="height=500, fullscreen=1";
+          window . open(url, '', windowSize);
+
+        }
+        reportPrintWindow("<?php echo $shop->sell($_POST);?>", "<?php echo $_SESSION['id']; ?>")
+      </script>
+      <?php
+      }
   ?>
   </pre>
   <div class="w3-row-padding w3-margin-bottom">
@@ -771,5 +788,7 @@
           
         });
         }
+        
+
         
 </script>
