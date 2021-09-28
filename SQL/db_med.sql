@@ -3,10 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 15, 2021 at 05:57 PM
+-- Generation Time: Sep 28, 2021 at 09:18 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.3
-
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -103,7 +102,11 @@ INSERT INTO `add_medicine_shop` (`med_id`, `shop_id`, `quantity`, `added_time`) 
 (4, 2, 100, '2021-07-02 17:13:24'),
 (4, 2, 100, '2021-07-02 17:26:26'),
 (18, 2, 33, '2021-07-02 18:17:51'),
-(14, 2, 44, '2021-07-02 18:18:01');
+(14, 2, 44, '2021-07-02 18:18:01'),
+(21, 2, 100, '2021-07-31 10:17:45'),
+(2, 2, 200, '2021-07-31 10:23:02'),
+(3, 2, 3, '2021-08-19 18:47:02'),
+(12, 2, 5000, '2021-08-19 18:47:13');
 
 -- --------------------------------------------------------
 
@@ -130,7 +133,8 @@ INSERT INTO `customer` (`id`, `shop_id`, `first_name`, `last_name`, `mobile`, `a
 (9, 1, 'Karim', 'Uddin', '0184525555', 'Malibag', '', ''),
 (10, 2, 'Rahim', 'Uddin', '01752448423', 'asdfasdf;lk', '', 'sdfa'),
 (11, 2, 'Milon', 'Mollah', '01845215474', 'aska;sdfj alsdjf;akjs;alskjf ', '', 'alsdj;faksdjf '),
-(12, 2, 'Rafiq', 'Islam', '0175882254', 'Addressasda slkajs;dfkaj a;lskdj', '', 'no remark');
+(12, 2, 'Rafiq', 'Islam', '0175882254', 'Addressasda slkajs;dfkaj a;lskdj', '', 'no remark'),
+(13, 2, 'Karim', 'Mollah', '01758445826', 'No addredd', '', '');
 
 -- --------------------------------------------------------
 
@@ -143,11 +147,36 @@ CREATE TABLE `invoice` (
   `shop_id` bigint(20) NOT NULL,
   `customer_id` bigint(20) DEFAULT NULL,
   `total` double NOT NULL,
-  `percent` double DEFAULT 0,
+  `discount` double DEFAULT 0,
+  `sub_total` double DEFAULT NULL,
   `paid` double NOT NULL,
   `due` double NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `invoice`
+--
+
+INSERT INTO `invoice` (`id`, `shop_id`, `customer_id`, `total`, `discount`, `sub_total`, `paid`, `due`, `created_at`) VALUES
+(1, 2, 10, 160, 8, NULL, 147, 13, '2021-08-19 21:13:43'),
+(2, 2, 10, 160, 8, NULL, 147, 13, '2021-08-19 21:14:09'),
+(3, 2, NULL, 6000, 0, NULL, 6000, 0, '2021-08-19 21:16:20'),
+(4, 2, NULL, 6000, 0, NULL, 6000, 0, '2021-08-19 21:16:59'),
+(5, 2, 11, 150, 0, NULL, 150, 0, '2021-08-20 15:20:42'),
+(6, 2, NULL, 225, 8, NULL, 207, 18, '2021-09-27 15:59:52'),
+(7, 2, 12, 57, 8, 52.44, 52.44, 0, '2021-09-27 16:13:05'),
+(8, 2, NULL, 260, 7, 241.8, 241.8, 0, '2021-09-27 20:43:42'),
+(9, 2, NULL, 270, 7, 251.1, 251.1, 0, '2021-09-27 20:46:47'),
+(10, 2, NULL, 105, 0, 105, 105, 0, '2021-09-27 20:48:05'),
+(11, 2, 10, 440, 0, 440, 440, 0, '2021-09-27 20:49:48'),
+(12, 2, NULL, 2760, 0, 2760, 2760, 0, '2021-09-27 20:53:22'),
+(13, 2, 10, 150, 0, 150, 100, 50, '2021-09-28 04:30:01'),
+(14, 2, NULL, 120, 0, 120, 120, 0, '2021-09-28 04:34:19'),
+(15, 2, NULL, 256, 0, 256, 256, 0, '2021-09-28 16:58:30'),
+(16, 2, NULL, 150, 0, 150, 150, 0, '2021-09-28 18:03:52'),
+(17, 2, 13, 405, 0, 405, 405, 0, '2021-09-28 19:07:59'),
+(18, 2, 10, 260, 10, 234, 234, 0, '2021-09-28 19:13:32');
 
 -- --------------------------------------------------------
 
@@ -161,6 +190,46 @@ CREATE TABLE `invoice_med` (
   `quantity` int(11) NOT NULL,
   `cost` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `invoice_med`
+--
+
+INSERT INTO `invoice_med` (`invoice_id`, `medicine_id`, `quantity`, `cost`) VALUES
+(2, 21, 2, 100),
+(2, 22, 4, 60),
+(3, 12, 400, 6000),
+(4, 12, 400, 6000),
+(5, 21, 3, 150),
+(6, 21, 3, 150),
+(6, 23, 5, 75),
+(7, 1, 3, 42),
+(7, 23, 1, 15),
+(8, 21, 4, 200),
+(8, 24, 4, 60),
+(9, 21, 4, 200),
+(9, 1, 5, 70),
+(10, 22, 4, 60),
+(10, 19, 3, 45),
+(11, 21, 4, 200),
+(11, 22, 5, 75),
+(11, 19, 5, 75),
+(11, 10, 6, 90),
+(12, 21, 54, 2700),
+(12, 2, 4, 60),
+(13, 21, 3, 150),
+(14, 22, 5, 75),
+(14, 23, 3, 45),
+(15, 21, 4, 200),
+(15, 1, 4, 56),
+(16, 21, 3, 150),
+(17, 21, 3, 150),
+(17, 22, 4, 60),
+(17, 23, 4, 60),
+(17, 19, 4, 60),
+(17, 10, 5, 75),
+(18, 21, 4, 200),
+(18, 22, 4, 60);
 
 -- --------------------------------------------------------
 
@@ -183,7 +252,7 @@ CREATE TABLE `medicine` (
 --
 
 INSERT INTO `medicine` (`id`, `brand_name`, `generic_name`, `dosage_form`, `strength`, `manufactured_by`, `unit_price`) VALUES
-(1, '1stCef', 'Cefadroxil Monohydrate', 'Capsule', '500 mg', 'Medimet Pharmaceuticals Ltd.', 15),
+(1, '1stCef', 'Cefadroxil Monohydrate', 'Capsule', '500 mg', 'Medimet Pharmaceuticals Ltd.', 14),
 (2, '3-Geocef', 'Cefixime Trihydrate', 'Capsule', '200 mg', 'Hallmark Pharmaceuticals Ltd.', 15),
 (3, 'A-Fenac', 'Diclofenac Sodium', 'tablet', '50 mg', 'ACME Laboratories Ltd.', 15),
 (4, 'A-Fenac', 'Diclofenac Sodium', 'IM injection', '75 mg/3 ml', 'ACME Laboratories Ltd.', 15),
@@ -203,7 +272,7 @@ INSERT INTO `medicine` (`id`, `brand_name`, `generic_name`, `dosage_form`, `stre
 (18, 'A-Meb', 'Mebeverine Hydrochloride', 'tablet', '135 mg', 'ACME Laboratories Ltd.', 15),
 (19, 'A-Mectin', 'Ivermectin (Oral)', 'tablet', '6 mg', 'ACME Laboratories Ltd.', 15),
 (20, 'A-Mectin', 'Ivermectin (Oral)', 'tablet', '12 mg', 'ACME Laboratories Ltd.', 15),
-(21, 'A-Migel', 'Miconazole Nitrate (Oral Gel)', 'cream', '2% w/w', 'ACME Laboratories Ltd.', 15),
+(21, 'A-Migel', 'Miconazole Nitrate (Oral Gel)', 'cream', '2% w/w', 'ACME Laboratories Ltd.', 50),
 (22, 'A-Mycin', 'Erythromycin (Lotion)', '', '3%', 'Aristopharma Ltd.', 15),
 (23, 'A-Mycin', 'Erythromycin (Oral)', 'tablet', '250 mg', 'Aristopharma Ltd.', 15),
 (24, 'A-Mycin', 'Erythromycin (Oral)', 'tablet', '500 mg', 'Aristopharma Ltd.', 15),
@@ -235,8 +304,8 @@ CREATE TABLE `shop` (
 --
 
 INSERT INTO `shop` (`id`, `shop_name`, `shop_address`, `shop_mobile`, `shop_logo`) VALUES
-(1, '', '', '', ''),
-(2, 'Mizan Med Farma', 'Goshbag', '0145744144', '');
+(1, 'Mazid', '', '', ''),
+(2, 'Mizan Med Farma', 'Sonia Gate, Goshbag, Zirabo, Ashulia, Dhaka', '0145744144', '');
 
 -- --------------------------------------------------------
 
@@ -256,23 +325,25 @@ CREATE TABLE `shop_medicine` (
 --
 
 INSERT INTO `shop_medicine` (`med_id`, `shop_id`, `quantity`, `price`) VALUES
-(1, 1, 50, 12),
-(2, 2, 52, 16),
+(1, 1, 50, 15),
+(2, 2, 248, 15),
 (2, 1, 70, 15),
-(3, 1, 135, 12),
-(4, 1, 62, 16),
-(21, 2, 45, 0),
-(22, 2, 210, 0),
-(23, 2, 133, 0),
-(19, 2, 5, 0),
-(24, 2, 4, 0),
-(9, 2, 55, 0),
-(10, 2, 150, 0),
-(5, 1, 50, 0),
-(1, 2, 500, 0),
-(4, 2, 1200, 0),
-(18, 2, 33, 0),
-(14, 2, 44, 0);
+(3, 1, 135, 15),
+(4, 1, 62, 15),
+(21, 2, 54, 0),
+(22, 2, 184, 15),
+(23, 2, 120, 15),
+(19, 2, -7, 15),
+(24, 2, 0, 15),
+(9, 2, 55, 15),
+(10, 2, 139, 15),
+(5, 1, 50, 15),
+(1, 2, 488, 0),
+(4, 2, 1200, 15),
+(18, 2, 33, 15),
+(14, 2, 44, 15),
+(3, 2, 3, 0),
+(12, 2, 4200, 0);
 
 -- --------------------------------------------------------
 
@@ -295,8 +366,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `has_shop`, `hash`) VALUES
-(1, 'Ruhul', 'Amin', 'redouanmasud4@gmail.com', '$2y$10$BBCpJxgPa8K.iw9ZporxzuW2Lt478RPUV/JFvKRHKzJhIwGhd1tpa', 1, 'c0b2a5de498f56562b4b1bcb2b3cac1e'),
-(2, 'Md. Reduan', 'Masud', 'redouanmasud@gmail.com', '$2y$10$FLgWrT/vh1P3E70D0Y3HaOtbBZgPwHgpNMv0T2NCpux.ZbrlqtUCq', 1, '5948b42f9ea03c17be521dcdfc83fc61');
+(1, 'Ruhul', 'Amin', 'redouanmasud4@gmail.com', '$2y$10$BBCpJxgPa8K.iw9ZporxzuW2Lt478RPUV/JFvKRHKzJhIwGhd1tpa', 1, '2d7a611100223c5350c02430320dabde'),
+(2, 'Md. Reduan', 'Masud', 'redouanmasud@gmail.com', '$2y$10$FLgWrT/vh1P3E70D0Y3HaOtbBZgPwHgpNMv0T2NCpux.ZbrlqtUCq', 1, 'a418fc1dab92646ef538c6ec459a8d10');
 
 --
 -- Indexes for dumped tables
@@ -365,13 +436,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `invoice`
 --
 ALTER TABLE `invoice`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `medicine`
