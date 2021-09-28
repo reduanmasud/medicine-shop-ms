@@ -42,6 +42,7 @@ class Shop
             $total_price += $sold_item[$i]->getTotalPrice();
         }
 
+        $sub_total = $total_price - $total_price * $discount / 100;
         $temp = [];
         $temp['sold_item'] = $sold_item;
         $temp['discount'] = $discount;
@@ -54,7 +55,8 @@ class Shop
             'total' => $total_price,
             'discount' => $discount,
             'paid' => $paid,
-            'due' => ($total_price - $paid)
+            'sub_total' => $sub_total,
+            'due' => ($sub_total - $paid)
         ];
         $invoice_id = $this->createInvoice($init_invoice_data);
 
@@ -64,13 +66,15 @@ class Shop
             $stmt->execute([$invoice_id, $sold_item[$i]->getMedId(), $sold_item[$i]->getQuantity(), $sold_item[$i]->getTotalPrice()]);
             $sold_item[$i]->updateStoredQuantity();
         }
+
+        return $invoice_id;
     }
 
     private function createInvoice($data)
     {
-        $sql = 'INSERT INTO `invoice` (`shop_id`, `customer_id`, `total`, `discount`, `paid`, `due`) VALUES (?,?,?,?,?,?)';
+        $sql = 'INSERT INTO `invoice` (`shop_id`, `customer_id`, `total`, `discount`, `sub_total`, `paid`, `due`) VALUES (?,?,?,?,?,?,?)';
         $stmt = $this->db->prepare($sql);
-        $stmt->execute([$data['shop_id'], $data['customer_id'], $data['total'], $data['discount'], $data['paid'], $data['due']]);
+        $stmt->execute([$data['shop_id'], $data['customer_id'], $data['total'], $data['discount'], $data['sub_total'], $data['paid'], $data['due']]);
 
         return $this->db->lastInsertId();
     }
