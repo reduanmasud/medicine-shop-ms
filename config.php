@@ -1,7 +1,7 @@
 <?php
 
 //usefull config variable
-define('URL', '192.168.0.109:3000');
+define('URL', 'localhost:3000');
 
     define('DB_HOST', 'localhost');
     define('DB_USER', 'root');

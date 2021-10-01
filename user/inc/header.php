@@ -101,5 +101,52 @@
     border-radius: 50%;
     }
     </style>
+    <style>
+  .component-1{
+    padding: 8px; margin-bottom: 10px;
+  }
+
+  .component-2{
+    padding-left: 15px;
+  }
+
+  .pdr-8-0{
+    padding-right: 8px;
+  }
+  .pdl-8-0{
+    padding-left: 8px;
+  }
+  @media screen and (max-width: 600px) {
+    .component-2{
+      padding-left: 0px;
+      margin-top: 20px;
+    }
+    .mgb-10{
+      margin-bottom: 10px;
+    }
+    .mgt-10{
+      margin-top:10px;
+    }
+
+    .mgl-0{
+      margin-left: 0px;
+    }
+
+    .pdl-0{
+      padding-left: 0px;
+    }
+
+    .pdr-8-0{
+      padding-right: 0px;
+      margin-bottom: 10px;
+    }
+    .pdl-8-0{
+    padding-left: 0px;
+    }
+
+
+
+  }
+</style>
     </head>
 <body class="w3-light-grey">
