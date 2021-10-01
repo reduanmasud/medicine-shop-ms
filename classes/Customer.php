@@ -61,7 +61,19 @@ class Customer
     }
 
 
-    public function getAllCustomersById($id)
+
+    public function getCustomerByShopAndId($id)
+    {
+        $sql = 'SELECT * FROM `customer` WHERE `shop_id` = ? AND `id` = ?';
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$this->shop->getID(), $id]);
+        $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+        return $res;
+    }
+
+    public function getAllCustomersByShopId($id)
     {
         $sql = 'SELECT * FROM `customer` WHERE `shop_id` = ?';
         $stmt = $this->db->prepare("$sql");

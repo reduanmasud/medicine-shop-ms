@@ -97,7 +97,7 @@
   ?>
   </pre>
   <div class="w3-row-padding w3-margin-bottom">
-    <div class="w3-quarter">
+    <div class="w3-quarter mgb-10">
       <div class="w3-container w3-red w3-padding-16">
         <div class="w3-left"><i class="fas fa-pills w3-xxxlarge"></i></div>
         <div class="w3-right">
@@ -107,7 +107,7 @@
         <h4>Total</h4>
       </div>
     </div>
-    <div class="w3-quarter">
+    <div class="w3-quarter mgb-10">
       <div class="w3-container w3-blue w3-padding-16">
         <div class="w3-left"><i class="fas fa-shopping-cart w3-xxxlarge"></i></div>
         <div class="w3-right">
@@ -117,7 +117,7 @@
         <h4>Total Sell (<small>Monthly</small>)</h4>
       </div>
     </div>
-    <div class="w3-quarter">
+    <div class="w3-quarter mgb-10">
       <div class="w3-container w3-teal w3-padding-16">
         <div class="w3-left"><i class="fas fa-hand-holding-usd w3-xxxlarge"></i></div>
         <div class="w3-right">
@@ -141,7 +141,7 @@
 
   <div class="w3-panel">
     <div class="w3-row-padding" style="margin:0 -16px">
-      <div class="w3-col m4">
+      <div class="w3-col m4 mbg-10">
         <div class="w3-card-4">
           <div class="w3-container w3-teal">
             <h2>Sell Medicine</h2>
@@ -171,7 +171,7 @@
 
       </div>
 
-      <div class="w3-col m8">
+      <div class="w3-col m8 mgt-10">
         <div class="w3-card-4">
           <div class="w3-container w3-teal">
             <h2>Medicine List</h2>
