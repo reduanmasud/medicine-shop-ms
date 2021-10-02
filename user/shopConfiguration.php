@@ -12,11 +12,7 @@
   
 <?php
     $medicine = new Medicine();
-    echo '<pre>';
-        var_dump($medicine->getAllGenericName());
-    echo '</pre>';
-    
-    
+        
     if(isset($_POST["shop_configuration"]))
     {
         if($user->hasShop())
