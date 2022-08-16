@@ -1,12 +1,12 @@
 <?php
 
 //usefull config variable
-define('URL', 'localhost:3000');
+define('URL', 'localhost/medicine-shop-ms');
 
     define('DB_HOST', 'localhost');
     define('DB_USER', 'root');
     define('DB_PASSWORD', '');
-    define('DB_DATABASE', 'db_med');
+    define('DB_DATABASE', 'medicine-shop-ms');
 
     // show error reporting
 error_reporting(E_ALL);

@@ -66,7 +66,7 @@
     <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
   </header>
 
-  <input type="text" name="" id="" value="<?php echo $_SESSION['hash'];?>">
+  <!--input type="text" name="" id="" value="<?php echo $_SESSION['hash'];?>"-->
   <pre>
   <?php
 

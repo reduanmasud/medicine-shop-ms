@@ -62,7 +62,7 @@
 
     <!-- Header -->
     <header class="w3-container" style="padding-top:22px">
-        <h5><b><i class="fa fa-cog"></i> Configure Your Shop</b></h5>
+        <h5><b><i class="fa fa-cog"></i> Add Medicine</b></h5>
 
         <?php
 

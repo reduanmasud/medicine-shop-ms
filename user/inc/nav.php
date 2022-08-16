@@ -12,9 +12,9 @@
     </div>
     <div class="w3-col s8 w3-bar">
       <span>Welcome, <strong><?php echo $user->getUserName(); ?></strong></span><br>
-      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
-      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
-      <a href="logout.php" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
+      <!-- <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
+      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a> -->
+      <a href="logout.php" class="w3-bar-item w3-button"><!--i class="fa fa-cog"></i--> Logout</a>
     </div>
   </div>
   <hr>
@@ -26,11 +26,13 @@
     <a href="index.php" class="w3-bar-item w3-button w3-padding <?php activeUrlSidebar('index.php'); ?>"><i class="fa fa-users fa-fw"></i>  Overview</a>
     <a href="addMedicine.php" class="w3-bar-item w3-button w3-padding <?php activeUrlSidebar('addMedicine.php'); ?>"><i class="fas fa-plus fa-fw"></i>  Add Medicine</a>
     <a href="customer.php" class="w3-bar-item w3-button w3-padding <?php activeUrlSidebar('customer.php'); ?>"><i class="fa fa-users fa-fw"></i>  Customer</a>
+<!--    
     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Geo</a>
     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="far fa-gem fa-fw"></i>  Orders</a>
     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  News</a>
     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fas fa-university fa-fw"></i>  General</a>
     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
+-->
     <a href="shopConfiguration.php" class="w3-bar-item w3-button w3-padding <?php activeUrlSidebar('shopConfiguration.php'); ?>"><i class="fa fa-cog fa-fw"></i> Settings</a><br><br>
   </div>
 </nav>
