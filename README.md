@@ -24,5 +24,5 @@
 ![image](https://user-images.githubusercontent.com/59122533/184936844-8b7cd03e-166d-4660-81c7-810f5089882d.png)
 
 ## Sell Slip
-![image](https://user-images.githubusercontent.com/59122533/184937797-55f76e8b-71fc-4ba4-8338-b604cdabe87d.png)
+![image](https://user-images.githubusercontent.com/59122533/185013526-4f055a4b-30a1-493a-bfda-e3cdfa3b1503.png)
 
