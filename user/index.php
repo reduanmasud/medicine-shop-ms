@@ -67,7 +67,8 @@
   </header>
 
   <!--input type="text" name="" id="" value="<?php echo $_SESSION['hash'];?>"-->
-  <pre>
+  <!-- <pre>
+  </pre> -->
   <?php
 
     //var_dump($shop->getId());
@@ -95,7 +96,7 @@
       <?php
       }
   ?>
-  </pre>
+ 
   <div class="w3-row-padding w3-margin-bottom">
     <div class="w3-quarter mgb-10">
       <div class="w3-container w3-red w3-padding-16">
@@ -234,7 +235,7 @@
     </div>
   </div>
   <hr>
-  <div class="w3-container">
+  <!-- <div class="w3-container">
     <h5>General Stats</h5>
     <p>New Visitors</p>
     <div class="w3-grey">
@@ -251,9 +252,9 @@
       <div class="w3-container w3-center w3-padding w3-red" style="width:75%">75%</div>
     </div>
   </div>
-  <hr>
+  <hr> -->
 
-  <div class="w3-container">
+  <!-- <div class="w3-container">
     <h5>Countries</h5>
     <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
       <tr>
@@ -283,8 +284,8 @@
     </table><br>
     <button class="w3-button w3-dark-grey">More Countries  <i class="fa fa-arrow-right"></i></button>
   </div>
-  <hr>
-  <div class="w3-container">
+  <hr> -->
+  <!-- <div class="w3-container">
     <h5>Recent Users</h5>
     <ul class="w3-ul w3-card-4 w3-white">
       <li class="w3-padding-16">
@@ -301,9 +302,9 @@
       </li>
     </ul>
   </div>
-  <hr>
+  <hr> -->
 
-  <div class="w3-container">
+  <!-- <div class="w3-container">
     <h5>Recent Comments</h5>
     <div class="w3-row">
       <div class="w3-col m2 text-center">
@@ -326,8 +327,8 @@
       </div>
     </div>
   </div>
-  <br>
-  <div class="w3-container w3-dark-grey w3-padding-32">
+  <br> -->
+  <!-- <div class="w3-container w3-dark-grey w3-padding-32">
     <div class="w3-row">
       <div class="w3-container w3-third">
         <h5 class="w3-bottombar w3-border-green">Demographic</h5>
@@ -349,7 +350,7 @@
         <p>Interests</p>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- Footer -->
   <footer class="w3-container w3-padding-16 w3-light-grey">

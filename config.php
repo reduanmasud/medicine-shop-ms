@@ -1,7 +1,7 @@
 <?php
 
 //usefull config variable
-define('URL', 'localhost/medicine-shop-ms');
+    define('URL', 'medicine-shop-ms.test');
 
     define('DB_HOST', 'localhost');
     define('DB_USER', 'root');

@@ -10,9 +10,9 @@
   <header class="w3-container" style="padding-top:22px">
     <h5><b><i class="fa fa-dashboard"></i> Customer</b></h5>
   </header>
-  <pre>
+  <!-- <pre>
 
-  </pre>
+  </pre> -->
 
   <?php if (isset($_GET['view']) && isset($_GET['id']) && !empty($_GET['id'])): ?>
     <!-- Customer View Option -->
