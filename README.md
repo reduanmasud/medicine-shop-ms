@@ -18,7 +18,7 @@
 ![image](https://user-images.githubusercontent.com/59122533/184936641-0b04846f-cde6-42e8-a398-875ffed6e1bb.png)
 
 ### Customer Profile
-![image](https://user-images.githubusercontent.com/59122533/184936755-3c3677ef-782c-4e35-9509-59517d1dd2f2.png)
+![image](https://user-image.githubusercontent.com/59122533/184936755-3c3677ef-782c-4e35-9509-59517d1dd2f2.png)
 
 ## Settings
 ![image](https://user-images.githubusercontent.com/59122533/184936844-8b7cd03e-166d-4660-81c7-810f5089882d.png)
